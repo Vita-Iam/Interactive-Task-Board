@@ -63,7 +63,7 @@ body {
   flex-wrap: wrap;
 }
 
-input, select, .btn {
+input, select, textarea, .btn {
   padding: 10px 14px;
   border: 1px solid var(--border-color);
   border-radius: 6px;
@@ -178,4 +178,23 @@ input[type="text"] {
 
 .btn-danger:hover {
   text-decoration: underline;
+}
+
+#task-description {
+  width: 100%;
+  min-height: 80px;
+  padding: 10px 14px;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  resize: vertical;
+}
+
+.task-card-description {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
 }
