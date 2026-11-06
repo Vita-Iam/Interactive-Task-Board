@@ -221,6 +221,30 @@ input[type="text"] {
   white-space: pre-wrap;
 }
 
+/* Task Counter */
+.task-counter {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.overview-item {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--card-bg);
+  padding: 15px 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px var(--shadow-color);
+  font-weight: 600;
+}
+
+.overview-count {
+  font-size: 1.4rem;
+  color: var(--accent-color);
+}
+
 /* Tablet screens */
 @media (max-width: 900px) {
   .board-container {
@@ -263,6 +287,15 @@ input[type="text"] {
 
   .column {
     min-height: 250px;
+  }
+
+  .task-counter {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .overview-item {
+    padding: 12px 15px;
   }
 }
 

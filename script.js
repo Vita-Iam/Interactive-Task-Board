@@ -111,6 +111,17 @@ function renderTasks() {
   document.getElementById('count-todo').textContent = counts['todo'];
   document.getElementById('count-in-progress').textContent = counts['in-progress'];
   document.getElementById('count-completed').textContent = counts['completed'];
+
+  // Update task count
+  const activeTasks = tasks.filter(task =>
+    task.status === 'todo' || task.status === 'in-progress'
+  ).length;
+
+  const completedTasks = tasks.filter(task => task.status === 'completed'
+  ).length;
+
+  document.getElementById('count-active').textContent = activeTasks;
+  document.getElementById('count-completed').textContent = completedTasks;
 }
 
 // Helper: Create Task DOM element
