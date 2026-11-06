@@ -9,6 +9,7 @@ const taskCategory = document.getElementById('task-category');
 const taskPriority = document.getElementById('task-priority');
 const searchInput = document.getElementById('search-input');
 const categoryFilter = document.getElementById('category-filter');
+const themeToggle = document.getElementById('theme-toggle');
 
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
@@ -17,6 +18,18 @@ document.addEventListener('DOMContentLoaded', () => {
   taskForm.addEventListener('submit', handleAddTask);
   searchInput.addEventListener('input', renderTasks);
   categoryFilter.addEventListener('change', renderTasks);
+
+  const savedTheme = localStorage.getItem('theme');
+
+  if (savedTheme === 'dark') {
+    document.body.classList.add('dark-mode');
+    themeToggle.checked = true;
+  }
+
+  themeToggle.addEventListener('change', () => {
+    document.body.classList.toggle('dark-mode', themeToggle.checked);
+    localStorage.setItem('theme', themeToggle.checked ? 'dark' : 'light');
+  });
 });
 
 // Save tasks to localStorage
