@@ -104,6 +104,18 @@ function renderTasks() {
 function createTaskCard(task) {
   const card = document.createElement('div');
   card.className = 'task-card';
+  card.draggable = true;
+  card.dataset.taskId = task.id;
+  card.addEventListener('dragstart', (event) => {
+    event.dataTransfer.setData('text/plain', task.id);
+    event.dataTransfer.effectAllowed = 'move';
+    card.classList.add('dragging');
+  });
+
+  card.addEventListener('dragend', () => {
+    card.classList.remove('dragging');
+  });
+
   card.setAttribute('data-priority', task.priority);
 
   card.innerHTML = `
@@ -130,3 +142,29 @@ function createTaskCard(task) {
 function escapeHtml(str) {
   return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
+
+document.querySelectorAll('.task-list').forEach(list => {
+  list.addEventListener('dragover', (event) => {
+    event.preventDefault();
+    event.dataTransfer.dropEffect = 'move';
+    list.classList.add('drag-over');
+  });
+
+  list.addEventListener('dragleave', (event) => {
+    if (!list.contains(event.relatedTarget)) {
+      list.classList.remove('drag-over');
+    }
+  });
+
+  list.addEventListener('drop', (event) => {
+    event.preventDefault();
+    list.classList.remove('drag-over');
+
+    const taskId = event.dataTransfer.getData('text/plain');
+    const newStatus = list.closest('.column').dataset.status;
+
+    if (tasks.some(task => task.id === taskId)) {
+      updateTaskStatus(taskId, newStatus);
+    }
+  });
+});

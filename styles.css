@@ -108,7 +108,7 @@ input[type="text"] {
 .column-header {
   display: flex;
   justify-content: space-between;
-  align-items: centre;
+  align-items: center;
   margin-bottom: 15px;
   padding-bottom: 10px;
   border-bottom: 2px solid #dcdfe4;
@@ -164,7 +164,7 @@ input[type="text"] {
 .task-actions {
   display: flex;
   justify-content: space-between;
-  align-items: centre;
+  align-items: center;
   margin-top: 6px;
 }
 
@@ -242,4 +242,21 @@ input[type="text"] {
   .column {
     min-height: 250px;
   }
+}
+
+/* Drag and drop */
+.task-card {
+  cursor: grab;
+}
+
+.task-card.dragging {
+  opacity: 0.5;
+  cursor: grabbing;
+}
+
+.task-list.drag-over {
+  background-color: rgba(52, 152, 219, 0.12);
+  outline: 2px dashed var(--accent-color);
+  outline-offset: -2px;
+  border-radius: 6px;
 }
