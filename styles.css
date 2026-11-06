@@ -92,7 +92,7 @@ input[type="text"] {
 /* Board Layout */
 .board-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
   gap: 20px;
 }
 
@@ -197,4 +197,49 @@ input[type="text"] {
   line-height: 1.5;
   overflow-wrap: anywhere;
   white-space: pre-wrap;
+}
+
+/* Tablet screens */
+@media (max-width: 900px) {
+  .board-container {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .task-form input, .task-form select, .task-form button {
+    flex: 1 1 45%;
+    min-width: 0;
+  }
+}
+
+/* Mobile screens */
+@media (max-width: 600px) {
+  body {
+    padding: 10px;
+  }
+
+  .app-header h1 {
+    font-size: 1.7rem;
+  }
+
+  .controls-section {
+    padding: 15px;
+  }
+
+  .board-container {
+    grid-template-columns: 1fr;
+  }
+
+  .task-form, .filter-bar {
+    flex-direction: column;
+  }
+
+  .task-form input, .task-form textarea, .task-form select,
+  .task-form button, .filter-bar input, .filter-bar select {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .column {
+    min-height: 250px;
+  }
 }
